@@ -1,4 +1,2 @@
-t1/2,N%,tfinal,name
-2.53,100,60,N_A
-11.05,0,"",N_B
-stable,0,"",N_C
+N_Ahalf,N_Bhalf,N_Chalf,N_A%,N_B%,N_C%,tfinal,iterlength,elementtotal
+2.53,11.05,stable,100,0,0,60,1,3
