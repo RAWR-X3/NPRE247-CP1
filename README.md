@@ -1,7 +1,8 @@
 # NPRE247-Computer Project 1
 ### Contents:
 - Instruction Manual (README.md)
-- Assignment (NPRE247 ComProj 1 Instructions.pdf)
+- Project report (NPRE247 ComProj 1.pdf)
+- Assignment requirements (NPRE247 ComProj 1 Instructions.pdf)
 - Code (NPRE247 ComProj 1 Code.py)
 - Input CSV (kepdecayinput.csv)
 - Output CSVs ('kepdecayoutput.csv','kepdecayoutput_t0.5.csv','kepdecayoutput_t0.1.csv')
