@@ -1,14 +1,12 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 import csv
-#import glob # rendered obselete by asking user to put all the files in the same folder that they then run from
 
 ###################################################################
 
 # config
 
 i = 0 # iteration counter, defaults to 0, shifts decay axis but does not 'jump to' later timesteps
-#e = 0 # element counter, leave at 0, initial loops will behave weirdly otherwise, depreciated
 s = 0 # arbitrary step counter, needs to be 0
 
 inputfilepath = 'kepdecayinput.csv'
@@ -21,14 +19,6 @@ csvwriter = csv.DictWriter(decayoutput,fieldnames=fieldnames,extrasaction='raise
 csvwriter.writeheader()
 
 ###################################################################
-
-# find input csv file, or print an error about it
-#try:
-#    filepath1 = glob.glob('**\kepdecayinput.csv',root_dir='C:', dir_fd=None, recursive=True, include_hidden=True)
-#    print('filepath1:',filepath1[0])    
-#except:
-#    print('issue with glob decayinput function')
-# rendered obselete by asking user to put all the files in the same folder that they then run from
 
 # put the csv file into mem as a dictionary
 with open(inputfilepath, mode='r') as decaycsv:
@@ -91,10 +81,6 @@ while i < tfinal:
     csvwriter.writerow(decaywrite)
     s += 1 # this may seem like a crude way of adding and subtracting: it is to be clear however if it isn't written like this then it makes an extra line in the output file that does nothing and bothers me
 
-    # numerical solution, commented print statements used for debugging through the terminal
-    #print('=========initial values=========')
-    #print(decaylist[0],i) # debug
-    #print('=========decayed values=========')
     decayfraction[0] = decaylist[0]['N_A%']*(1/2)**(iterlength/decaylist[0]['N_Ahalf']) # half life equations used to calculate the remaining material fractions
     decayfraction[1] = decaylist[0]['N_B%']*(1/2)**(iterlength/decaylist[0]['N_Bhalf'])
     
@@ -106,26 +92,15 @@ while i < tfinal:
     
     decaylist[0]['N_B%'] += delta[0] # add deltas to the next element down the chain
     decaylist[0]['N_C%'] += delta[1]
-    #print(decaylist[0],i) # debug
-    #print('========================timestep========================')
 i = 0 # reset i counter
 s = 0 # reset s counter
 
-# find output csv file, or print an error about it
-#try:
-#    filepath2 = glob.glob('**\kepdecayoutput.csv',root_dir='C:', dir_fd=None, recursive=True, include_hidden=True)
-#    print('filepath2:',filepath2[0])
-#except:
-#    print('issue with glob decayoutput function')
-# rendered obselete by asking user to put all the files in the same folder that they then run from
 decayoutput.close() # "you should use try and finally!" if i had more forethought, yeah sure. but i didn't lol.
 # put the csv file into mem as a dictionary
 with open(outputfilepath, mode='r') as decaycsv:
     decayoutlist = list(csv.DictReader(decaycsv))
-#print(decayoutlist) # debug
 
 # create iteration list
-#decayread = np.zeros(etotal) future use
 N_Alist = np.zeros(int(totalsteps))
 N_Blist = np.zeros(int(totalsteps))
 N_Clist = np.zeros(int(totalsteps))
